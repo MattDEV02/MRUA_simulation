@@ -5,8 +5,8 @@ function setup() {
    p1F = new Point(x1F, y1F);
    p2F = new Point(x2F, y2F);
    createCanvas(pM.x, pM.y);
-   console.log(`${moveName}: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(new Point(0, yM), p10)} m.`);
-   console.log(`${moveName}: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(new Point(0, yM), p20)} m.`);
+   console.log(`${moveName}: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10)} m.`);
+   console.log(`${moveName}: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20)} m.`);
    start = new Date();
    t0 = start.getMilliseconds() / 1000;
 }
@@ -34,7 +34,7 @@ function draw() { // loop
    vMe2 += v2;
    i2++;
    if (p1.equals(p2)) {
-      ss = dt;
+      tS = dt;
       collision = true;
       xS = x2,
       yS = y2;
@@ -45,13 +45,13 @@ function draw() { // loop
       vMe2 /= i2;
       console.log(`${moveName} p1: tF = ${dt.toFixed(5)} s con: s1(tF) = ${d1} m, { ${p10.toString()} ==> ${p1F.toString()} }, v1(tF) = ${v1.toFixed(3)} m/s = ${toKMH(v1)} km/h, con a1 = ${a1} m/s^2 ; vMe1 = ${vMe1.toFixed(3)} m/s = ${toKMH(vMe1)} km/h`);
       console.log(`${moveName} p2: tF = ${dt.toFixed(5)} s con: s2(tF) = ${d2} m, { ${p20.toString()} ==> ${p2F.toString()} }, v2(tF) = ${v2.toFixed(3)} m/s = ${toKMH(v2)} km/h, con a2 = ${a2} m/s^2 ; vMe2 = ${vMe2.toFixed(3)} m/s = ${toKMH(vMe2)} km/h`);
-      stroke(p1.color);
-      line(p10.x, p10.y, p1F.x, p1F.y);
-      stroke(p2.color);
-      line(p20.x, p20.y, p2.x, p2.y);
+      new Line(p10, p1, p1.color);
+      new Line(p20, p2, p2.color);
       if(collision) {
-         new Point(xS, yS, diameter, 0);
-         console.warn(`Scontro: t* = ${ss.toFixed(5)} s ==> { x(${ss.toFixed(5)}) = ${Math.round(x2)}, y(${ss.toFixed(5)}) = ${Math.round(y2)} }`);
+         pS = new Point(xS, yS, diameter, 0);
+         new Line(new Point(0, pS.y), pS, 0);
+         new Line(new Point(pS.x, yM), pS, 0);
+         console.log(`Scontro: t* = ${tS.toFixed(5)} s ==> { x(${tS.toFixed(5)}) = ${Math.round(x2)}, y(${tS.toFixed(5)}) = ${Math.round(y2)} } ==> ${Point.distance(p0, pS)} m`);
       }
    }
 }

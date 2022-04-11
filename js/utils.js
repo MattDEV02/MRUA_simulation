@@ -26,6 +26,19 @@ class Point {
    isArrived = pF => (this.x >= pF.x && this.y <= pF.y);
 }
 
+class Line {
+   
+   constructor(p1, p2, color) {
+      this.p1 = p1;
+      this.p2 = p2;
+      this.color = color;
+      stroke(this.color); 
+      line(p1.x, p1.y, p2.x, p2.y);
+   }
+
+   length = () => Point.distance(this.p1, this.p2);
+}
+
 const toKMH = value => (value * 3.6).toFixed(2); // v:  m/s ==> km/h
 
 const
@@ -38,8 +51,8 @@ const
    d1F = 500,
    d2F = 150,
    v10 = 0,
-   v20 = 44.4,
-   a1 = 49.8,
+   v20 = 34.5,
+   a1 = 30,
    a2 = 0,
    ts = 0, // t star
    moveName = "MRUA",
@@ -49,7 +62,8 @@ const
    x1F = x10 + d1F,
    y1F = y10 - d1F,
    x2F = x20 + d2F,
-   y2F = y20 - d2F;
+   y2F = y20 - d2F,
+   p0 = new Point(0, 0);
 
 let
    pM = null,
@@ -79,6 +93,6 @@ let
    xS = 0,
    yS = 0,
    pS = null,
-   ss = 0,
+   tS = 0,
    collision = false,
    start = null;
