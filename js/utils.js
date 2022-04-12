@@ -56,7 +56,7 @@ const
    a2 = 0,
    ts = 0, // t star
    moveName = "MRUA",
-   diameter = 5; // MRUA
+   diameter = 5;
 
 const
    x1F = x10 + d1F,

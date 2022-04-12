@@ -50,7 +50,7 @@ function draw() { // loop
    if (p1Finish || p2Finish) {
       noLoop();
       vMe1 = vTot1 / i1;
-      vMe1 = vTot2 / i2;
+      vMe2 = vTot2 / i2;
       console.log(`${moveName} p1: tF = ${dt.toFixed(5)} s con: s1(tF) = ${d1} m, { ${p10.toString()} ==> ${p1F.toString()} }, v1(tF) = ${v1.toFixed(3)} m/s = ${toKMH(v1)} km/h, con a1 = ${a1} m/s^2 ; vMe1 = ${vMe1.toFixed(3)} m/s = ${toKMH(vMe1)} km/h`);
       console.log(`${moveName} p2: tF = ${dt.toFixed(5)} s con: s2(tF) = ${d2} m, { ${p20.toString()} ==> ${p2F.toString()} }, v2(tF) = ${v2.toFixed(3)} m/s = ${toKMH(v2)} km/h, con a2 = ${a2} m/s^2 ; vMe2 = ${vMe2.toFixed(3)} m/s = ${toKMH(vMe2)} km/h`);
       new Line(p10, p1, p1.color);
