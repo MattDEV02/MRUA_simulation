@@ -51,8 +51,8 @@ const
    d1F = 500,
    d2F = 150,
    v10 = 0,
-   v20 = 34.5,
-   a1 = 30,
+   v20 = 34.64,
+   a1 = 30.04,
    a2 = 0,
    ts = 0, // t star
    moveName = "MRUA",
@@ -86,8 +86,10 @@ let
    ds2 = 0,
    d1 = 0, // total distance
    d2 = 0, // total distance
-   vMe1 = v10, // media velocity
-   vMe2 = v20, // media velocity
+   vTot1 = v10, // media velocity
+   vTot2 = v20, // media velocity
+   vMe1 = 0, // media velocity
+   vMe2 = 0, // media velocity
    i1 = 1, // number of v
    i2 = 1, // number of v
    xS = 0,
@@ -95,4 +97,6 @@ let
    pS = null,
    tS = 0,
    collision = false,
+   p1Finish = false,
+   p2Finish = false,
    start = null;
