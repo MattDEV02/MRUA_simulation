@@ -49,11 +49,12 @@ const
    x20 = 20,
    y20 = 450,
    d1F = 500,
-   d2F = 150,
+   d2F = 5,
    v10 = 0,
    v20 = 34.64,
    a1 = 30.04,
    a2 = 0,
+   t0 = 0,
    ts = 0, // t star
    moveName = "MRUA",
    diameter = 5;
@@ -71,7 +72,7 @@ let
    p1F = null,
    p20 = null,
    p2F = null,
-   t0 = 0,
+   tStart = 0,
    t = 0,
    dt = 0, // delta t = t - t0
    v1 = v10,
