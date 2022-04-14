@@ -42,6 +42,7 @@ class Line {
 const toKMH = value => (value * 3.6).toFixed(2); // v:  m/s ==> km/h
 
 const
+   black = "#000000",
    xM = 550,
    yM = 550,
    x10 = 20,
@@ -49,21 +50,20 @@ const
    x20 = 20,
    y20 = 450,
    d1F = 500,
-   d2F = 5,
+   d2F = 250,
    v10 = 0,
-   v20 = 34.64,
-   a1 = 30.04,
+   v20 = 34.731,
+   a1 = 30.098,
    a2 = 0,
    t0 = 0,
    ts = 0, // t star
-   moveName = "MRUA",
    diameter = 5;
 
 const
    x1F = x10 + d1F,
    y1F = y10 - d1F,
    x2F = x20 + d2F,
-   y2F = y20 - d2F,
+   y2F = y20 - 0,
    p0 = new Point(0, 0);
 
 let
