@@ -5,8 +5,7 @@ function setup() {
    p1F = new Point(x1F, y1F);
    p2F = new Point(x2F, y2F);
    createCanvas(pM.x, pM.y);
-   console.log(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10)} m.`);
-   console.log(`MRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20)} m.`);
+   window.alert(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10)} m.\n \nMRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20)} m.`);
    start = new Date();
    tStart = start.getMilliseconds() / 1000;
 }
