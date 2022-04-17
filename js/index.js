@@ -5,7 +5,7 @@ function setup() {
    p1F = new Point(x1F, y1F);
    p2F = new Point(x2F, y2F);
    createCanvas(pM.x, pM.y);
-   window.alert(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10, yM)} m.\n \nMRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20, yM)} m.`);
+   window.alert(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t10} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10, yM)} m.\n \nMRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t20} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20, yM)} m.`);
    start = new Date();
    tStart = start.getMilliseconds() / 1000;
 }
@@ -16,22 +16,20 @@ function draw() { // loop
    p2 = new Point(x2, y2, diameter, "#FF0000");
    d1 = Point.distance(p10, p1, yM);
    d2 = Point.distance(p20, p2, yM);
-   if (mouseIsPressed)
-      noLoop();
    t = ((new Date() - start) / 1000);
-   dt = Math.abs((t - tStart) - t0);
-   if (!(p1.isArrived(p1F) || p1.isOutFromCanvas(pM)) && !p1Finish) {
-      v1 = v10 + (a1 * dt);
-      ds1 = ((1 / 2) * a1 * Math.pow(dt, 2)) + (v10 * dt);
+   dt = Math.abs((t - tStart));
+   if (!(p1.isArrived(p1F) || p1.isOutFromCanvas(pM)) && dt >= t10) {
+      v1 = v10 + (a1 * (dt - t10));
+      ds1 = ((1 / 2) * a1 * Math.pow(dt, 2)) + (v10 * (dt - t10));
       x1 = p10.x + ds1;
       y1 = p10.y - ds1;
       vTot1 += v1;
       i1++;
    } else
       p1Finish = true;
-   if (!(p2.isArrived(p2F) || p2.isOutFromCanvas(pM) && !p2Finish)) {
-      v2 = v20 + (a2 * dt);
-      ds2 = ((1 / 2) * a2 * Math.pow(dt, 2)) + (v20 * dt);
+   if (!(p2.isArrived(p2F) || p2.isOutFromCanvas(pM)) && dt >= t20) {
+      v2 = v20 + (a2 * (dt - t20));
+      ds2 = ((1 / 2) * a2 * Math.pow(dt, 2)) + (v20 * (dt - t20));
       x2 = p20.x + ds2;
       //y2 = p20.y - ds2;
       vTot2 += v2;
@@ -43,8 +41,8 @@ function draw() { // loop
    if (p1.equals(p2)) {
       tS = dt;
       collision = true;
-      xS = x2,
-         yS = y2;
+      xS = x2;
+      yS = y2;
    }
    if (p1Finish && p2Finish) {
       noLoop();
@@ -61,4 +59,12 @@ function draw() { // loop
          console.log(`Scontro: t* = ${tS.toFixed(5)} s ==> { x(${tS.toFixed(5)}) = ${Math.round(x2)}, y(${tS.toFixed(5)}) = ${Math.round(y2)} } ==> ${Point.distance(p0, pS, yM)} m`);
       }
    }
+}
+
+function mousePressed() {
+   noLoop();
+}
+
+function mouseReleased() {
+   loop();
 }
