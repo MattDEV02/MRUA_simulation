@@ -1,5 +1,5 @@
 class Point {
-   
+
    constructor(x, y, diameter, color) {
       this.x = x;
       this.y = y;
@@ -16,9 +16,9 @@ class Point {
 
    equals = p2 => Math.round(this.x) === Math.round(p2.x) && Math.round(this.y) === Math.round(p2.y);
 
-   static distance = (p1, p2) => Math.sqrt(
+   static distance = (p1, p2, yM) => Math.sqrt(
       Math.pow((p2.x - p1.x), 2) +
-      Math.pow((p2.y - p1.y), 2)
+      Math.pow((yM - p2.y - p1.y), 2)
    ).toFixed(3);
 
    isOutFromCanvas = pM => (this.x > pM.x || this.x < 0 || this.y < 0 || this.y > pM.y);
@@ -27,12 +27,12 @@ class Point {
 }
 
 class Line {
-   
+
    constructor(p1, p2, color) {
       this.p1 = p1;
       this.p2 = p2;
       this.color = color;
-      stroke(this.color); 
+      stroke(this.color);
       line(p1.x, p1.y, p2.x, p2.y);
    }
 
@@ -47,13 +47,13 @@ const
    yM = 550,
    x10 = 20,
    y10 = 530,
-   x20 = 20,
-   y20 = 450,
-   d1F = 500,
+   x20 = 1,
+   y20 = 530,
+   d1F = 250,
    d2F = 250,
-   v10 = 0,
+   v10 = 20,
    v20 = 34.731,
-   a1 = 30.098,
+   a1 = 0,
    a2 = 0,
    t0 = 0,
    ts = 0, // t star

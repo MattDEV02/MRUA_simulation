@@ -5,7 +5,7 @@ function setup() {
    p1F = new Point(x1F, y1F);
    p2F = new Point(x2F, y2F);
    createCanvas(pM.x, pM.y);
-   window.alert(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10)} m.\n \nMRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20)} m.`);
+   window.alert(`MRUA: v10 = ${v10} m/s, a1 = ${a1} m/s^2, t10 = ${t0} s, s10 = ${p10.toString()} => ${Point.distance(p0, p10, yM)} m.\n \nMRU: v20 = ${v20} m/s, a2 = ${a2} m/s^2, t20 = ${t0} s, s20 = ${p20.toString()} => ${Point.distance(p0, p20, yM)} m.`);
    start = new Date();
    tStart = start.getMilliseconds() / 1000;
 }
@@ -14,8 +14,8 @@ function draw() { // loop
    background("#FFFFFF");
    p1 = new Point(x1, y1, diameter, "#0000FF");
    p2 = new Point(x2, y2, diameter, "#FF0000");
-   d1 = Point.distance(p10, p1);
-   d2 = Point.distance(p20, p2);
+   d1 = Point.distance(p10, p1, yM);
+   d2 = Point.distance(p20, p2, yM);
    if (mouseIsPressed)
       noLoop();
    t = ((new Date() - start) / 1000);
@@ -58,7 +58,7 @@ function draw() { // loop
          pS = new Point(xS, yS, diameter, black);
          new Line(new Point(0, pS.y), pS, black);
          new Line(new Point(pS.x, yM), pS, black);
-         console.log(`Scontro: t* = ${tS.toFixed(5)} s ==> { x(${tS.toFixed(5)}) = ${Math.round(x2)}, y(${tS.toFixed(5)}) = ${Math.round(y2)} } ==> ${Point.distance(p0, pS)} m`);
+         console.log(`Scontro: t* = ${tS.toFixed(5)} s ==> { x(${tS.toFixed(5)}) = ${Math.round(x2)}, y(${tS.toFixed(5)}) = ${Math.round(y2)} } ==> ${Point.distance(p0, pS, yM)} m`);
       }
    }
 }
